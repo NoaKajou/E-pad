@@ -24,6 +24,16 @@ An elegant retro MP3 player inspired by the classic iPod, built with Electron.
 
 E-pad is a modern MP3 player with a nostalgic design inspired by the classic iPod. It offers a simple and intuitive user interface to listen to your favorite music tracks with characteristic retro styling.
 
+## 📸 Preview
+
+<div align="center">
+
+![E-pad MP3 Player Screenshot](screenshot.png)
+
+*Classic iPod-style interface with green monochrome screen*
+
+</div>
+
 ### ✨ Features
 
 - 🎶 **MP3 File Playback** - Complete support for MP3 audio files
