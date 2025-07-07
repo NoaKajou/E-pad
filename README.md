@@ -6,6 +6,20 @@ An elegant retro MP3 player inspired by the classic iPod, built with Electron.
 ![Version](https://img.shields.io/badge/Version-1.0.0-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
+## 🚀 Quick Start - Download Now!
+
+**Ready to use? Skip the setup and download the app directly:**
+
+<div align="center">
+
+### 📥 [**Download Latest Release**](https://github.com/NoaKajou/E-pad/releases/latest) 📥
+
+**Available for Windows • macOS • Linux**
+
+</div>
+
+---
+
 ## 📋 Description
 
 E-pad is a modern MP3 player with a nostalgic design inspired by the classic iPod. It offers a simple and intuitive user interface to listen to your favorite music tracks with characteristic retro styling.
@@ -23,7 +37,24 @@ E-pad is a modern MP3 player with a nostalgic design inspired by the classic iPo
 
 ## 🚀 Installation
 
-### 🛠️ Build from Source
+### � Download Ready-to-Use App
+
+**🎯 Want to use E-pad right now? Skip the setup!**
+
+<div align="center">
+
+### [**📦 Download Latest Release**](https://github.com/NoaKajou/E-pad/releases/latest)
+
+**Choose your platform:**
+- 🖥️ **Windows**: Download the `.exe` file
+- 🍎 **macOS**: Download the `.zip` file (Intel & Apple Silicon supported)
+- 🐧 **Linux**: Download the `.AppImage` file
+
+</div>
+
+---
+
+### �🛠️ Build from Source
 
 **For developers**:
 
