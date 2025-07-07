@@ -28,7 +28,7 @@ E-pad is a modern MP3 player with a nostalgic design inspired by the classic iPo
 
 <div align="center">
 
-![E-pad MP3 Player Screenshot](screenshot.png)
+![E-pad MP3 Player Screenshot](img/image.png)
 
 *Classic iPod-style interface with green monochrome screen*
 
