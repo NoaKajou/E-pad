@@ -1,0 +1,87 @@
+body {
+  background: #c3c3c3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Courier New', monospace;
+}
+
+.ipod-container {
+  background: #e0e0e0;
+  border-radius: 30px;
+  padding: 30px;
+  width: 300px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.ipod-screen {
+  background: #111;
+  color: #0f0;
+  padding: 20px;
+  border-radius: 10px;
+  height: 160px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.screen-content h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.screen-content p {
+  font-size: 0.9rem;
+  margin: 5px 0;
+  color: #6f6;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+#progress {
+  width: 100%;
+}
+
+.ipod-controls {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.ipod-controls button {
+  background: #ccc;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.ipod-controls button:hover {
+  background: #aaa;
+}
+
+#importBtn {
+  margin-top: 15px;
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#volume {
+  width: 100%;
+  margin-top: 5px;
+}
