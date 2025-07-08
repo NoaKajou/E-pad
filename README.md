@@ -316,7 +316,7 @@ Contributions are welcome! To contribute:
 
 ## 🔮 Future Features
 
-- [x ] Support for additional audio formats (WAV, FLAC, OGG)
+- [x] Support for additional audio formats (WAV, FLAC, OGG)
 - [ ] Integrated audio visualizer
 - [ ] Graphic equalizer
 - [ ] Shuffle and repeat modes
