@@ -3,7 +3,7 @@
 An elegant retro MP3 player inspired by the classic iPod, built with Electron.
 
 ![MP3 Retro Player](https://img.shields.io/badge/Electron-29.4.6-blue)
-![Version](https://img.shields.io/badge/Version-1.0.0-green)
+![Version](https://img.shields.io/badge/Version-1.2.5-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ## 🚀 Quick Start - Download Now!

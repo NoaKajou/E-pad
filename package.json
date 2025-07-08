@@ -1,6 +1,6 @@
 {
   "name": "mp3-retro-player",
-  "version": "1.0.0",
+  "version": "1.2.5",
   "description": "Un lecteur MP3 rétro façon iPod",
   "author": "NoaKajou",
   "license": "MIT",
@@ -11,7 +11,7 @@
   },
   "build": {
     "appId": "com.elias.mp3player",
-    "productName": "MP3 Retro Player",
+    "productName": "MP3-Retro-Player",
     "files": [
       "**/*"
     ],
