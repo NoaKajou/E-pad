@@ -14,6 +14,7 @@ const durationElem = document.getElementById('duration');
 const volume = document.getElementById('volume');
 const shuffleBtn = document.getElementById('shuffleBtn');
 const repeatBtn = document.getElementById('repeatBtn');
+const themeSelect = document.getElementById('themeSelect');
 
 
 let playlist = [];
@@ -88,6 +89,22 @@ shuffleBtn.addEventListener('click', () => {
 repeatBtn.addEventListener('click', () => {
   isRepeatMode = !isRepeatMode;
   repeatBtn.classList.toggle('active', isRepeatMode);
+});
+
+// 🎨 Theme switching
+themeSelect.addEventListener('change', (e) => {
+  const selectedTheme = e.target.value;
+  document.documentElement.setAttribute('data-theme', selectedTheme);
+  
+  // Save theme preference
+  localStorage.setItem('selectedTheme', selectedTheme);
+});
+
+// Load saved theme on startup
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('selectedTheme') || 'classic';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeSelect.value = savedTheme;
 });
 
 // ▶️ Jouer un morceau de la playlist

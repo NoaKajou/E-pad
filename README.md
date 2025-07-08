@@ -321,7 +321,7 @@ Contributions are welcome! To contribute:
 - [x] Shuffle and repeat modes
 - [ ] Track metadata (artist, album, artwork)
 - [ ] Global keyboard shortcuts
-- [ ] Customizable themes
+- [x] Customizable themes
 - [ ] Full-screen mode
 
 ## 📞 Support

@@ -1,31 +1,95 @@
+/* ===== CSS VARIABLES FOR THEMES ===== */
+:root {
+  --bg-color: #c3c3c3;
+  --ipod-bg: #e0e0e0;
+  --screen-bg: #111;
+  --screen-text: #0f0;
+  --screen-text-secondary: #6f6;
+  --button-bg: #ccc;
+  --button-hover: #aaa;
+  --button-import-bg: #555;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --border-radius: 30px;
+  --border-radius-small: 10px;
+}
+
+/* ===== THEME VARIATIONS ===== */
+[data-theme="classic"] {
+  --bg-color: #c3c3c3;
+  --ipod-bg: #e0e0e0;
+  --screen-bg: #111;
+  --screen-text: #0f0;
+  --screen-text-secondary: #6f6;
+  --button-bg: #ccc;
+  --button-hover: #aaa;
+  --button-import-bg: #555;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --ipod-bg: #2d2d2d;
+  --screen-bg: #000;
+  --screen-text: #00ff00;
+  --screen-text-secondary: #00cc00;
+  --button-bg: #404040;
+  --button-hover: #555;
+  --button-import-bg: #333;
+}
+
+[data-theme="blue"] {
+  --bg-color: #b8c6db;
+  --ipod-bg: #d4e6f1;
+  --screen-bg: #1b2631;
+  --screen-text: #5dade2;
+  --screen-text-secondary: #85c1e9;
+  --button-bg: #aed6f1;
+  --button-hover: #85c1e9;
+  --button-import-bg: #2874a6;
+}
+
+[data-theme="retro"] {
+  --bg-color: #f4e4c1;
+  --ipod-bg: #ffe5b4;
+  --screen-bg: #8b4513;
+  --screen-text: #ffd700;
+  --screen-text-secondary: #ffed4a;
+  --button-bg: #deb887;
+  --button-hover: #d2b48c;
+  --button-import-bg: #8b6914;
+}
+
 body {
-  background: #c3c3c3;
+  background: var(--bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   font-family: 'Courier New', monospace;
+  margin: 0;
+  transition: background 0.3s ease;
 }
 
 .ipod-container {
-  background: #e0e0e0;
-  border-radius: 30px;
+  background: var(--ipod-bg);
+  border-radius: var(--border-radius);
   padding: 30px;
   width: 300px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 20px var(--shadow);
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .ipod-screen {
-  background: #111;
-  color: #0f0;
+  background: var(--screen-bg);
+  color: var(--screen-text);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: var(--border-radius-small);
   height: 160px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: all 0.3s ease;
 }
 
 .screen-content h2 {
@@ -36,7 +100,7 @@ body {
 .screen-content p {
   font-size: 0.9rem;
   margin: 5px 0;
-  color: #6f6;
+  color: var(--screen-text-secondary);
 }
 
 .time {
@@ -56,7 +120,7 @@ body {
 }
 
 .ipod-controls button {
-  background: #ccc;
+  background: var(--button-bg);
   border: none;
   padding: 15px;
   border-radius: 50%;
@@ -64,11 +128,11 @@ body {
   width: 50px;
   height: 50px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
 }
 
 .ipod-controls button:hover {
-  background: #aaa;
+  background: var(--button-hover);
 }
 
 /* ===== MODE CONTROLS ===== */
@@ -80,7 +144,7 @@ body {
 }
 
 .mode-controls button {
-  background: #ccc;
+  background: var(--button-bg);
   border: none;
   padding: 8px 12px;
   border-radius: 8px;
@@ -92,26 +156,62 @@ body {
 }
 
 .mode-controls button:hover {
-  background: #aaa;
+  background: var(--button-hover);
   transform: translateY(-1px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mode-controls button.active {
-  background: #0f0;
-  color: #111;
+  background: var(--screen-text);
+  color: var(--screen-bg);
   opacity: 1;
   box-shadow: 0 2px 8px rgba(15, 255, 0, 0.3);
 }
 
 #importBtn {
   margin-top: 15px;
-  background: #555;
+  background: var(--button-import-bg);
   color: #fff;
   border: none;
   padding: 8px 15px;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* ===== THEME SELECTOR ===== */
+.theme-selector {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.theme-selector label {
+  font-size: 0.9rem;
+  color: var(--screen-bg);
+  font-weight: bold;
+}
+
+#themeSelect {
+  background: var(--button-bg);
+  color: var(--screen-bg);
+  border: 1px solid var(--button-hover);
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#themeSelect:hover {
+  background: var(--button-hover);
+}
+
+#themeSelect:focus {
+  outline: 2px solid var(--screen-text);
+  outline-offset: 2px;
 }
 
 #volume {
