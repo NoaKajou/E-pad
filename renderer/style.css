@@ -71,6 +71,39 @@ body {
   background: #aaa;
 }
 
+/* ===== MODE CONTROLS ===== */
+.mode-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.mode-controls button {
+  background: #ccc;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mode-controls button:hover {
+  background: #aaa;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mode-controls button.active {
+  background: #0f0;
+  color: #111;
+  opacity: 1;
+  box-shadow: 0 2px 8px rgba(15, 255, 0, 0.3);
+}
+
 #importBtn {
   margin-top: 15px;
   background: #555;

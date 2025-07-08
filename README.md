@@ -318,8 +318,7 @@ Contributions are welcome! To contribute:
 
 - [x] Support for additional audio formats (WAV, FLAC, OGG)
 - [x] Implement marquee-style scrolling for track titles
-- [ ] Graphic equalizer
-- [ ] Shuffle and repeat modes
+- [x] Shuffle and repeat modes
 - [ ] Track metadata (artist, album, artwork)
 - [ ] Global keyboard shortcuts
 - [ ] Customizable themes

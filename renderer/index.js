@@ -12,11 +12,16 @@ const progress = document.getElementById('progress');
 const currentTimeElem = document.getElementById('currentTime');
 const durationElem = document.getElementById('duration');
 const volume = document.getElementById('volume');
+const shuffleBtn = document.getElementById('shuffleBtn');
+const repeatBtn = document.getElementById('repeatBtn');
 
 
 let playlist = [];
 let currentIndex = -1;
 let isPlaying = false;
+let isShuffleMode = false;
+let isRepeatMode = false;
+let shuffledIndices = [];
 
 // 🔁 Charger la playlist
 window.electronAPI.loadPlaylist().then((loaded) => {
@@ -60,15 +65,29 @@ audio.addEventListener('pause', () => {
 // ⏭️ Suivant
 nextBtn.addEventListener('click', () => {
   if (playlist.length === 0) return;
-  currentIndex = (currentIndex + 1) % playlist.length;
-  playCurrentTrack();
+  playNextTrack();
 });
 
 // ⏮️ Précédent
 prevBtn.addEventListener('click', () => {
   if (playlist.length === 0) return;
-  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-  playCurrentTrack();
+  playPreviousTrack();
+});
+
+// 🔀 Shuffle mode
+shuffleBtn.addEventListener('click', () => {
+  isShuffleMode = !isShuffleMode;
+  shuffleBtn.classList.toggle('active', isShuffleMode);
+  
+  if (isShuffleMode) {
+    generateShuffledIndices();
+  }
+});
+
+// 🔁 Repeat mode
+repeatBtn.addEventListener('click', () => {
+  isRepeatMode = !isRepeatMode;
+  repeatBtn.classList.toggle('active', isRepeatMode);
 });
 
 // ▶️ Jouer un morceau de la playlist
@@ -137,3 +156,62 @@ function updateTitle(text) {
     titleEl.style.animation = "none";
   }
 }
+
+// ===== SHUFFLE & REPEAT FUNCTIONS =====
+
+function generateShuffledIndices() {
+  shuffledIndices = [...Array(playlist.length).keys()];
+  // Fisher-Yates shuffle algorithm
+  for (let i = shuffledIndices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledIndices[i], shuffledIndices[j]] = [shuffledIndices[j], shuffledIndices[i]];
+  }
+}
+
+function playNextTrack() {
+  if (playlist.length === 0) return;
+  
+  if (isShuffleMode) {
+    if (shuffledIndices.length === 0) {
+      generateShuffledIndices();
+    }
+    
+    const currentShuffledIndex = shuffledIndices.findIndex(index => index === currentIndex);
+    const nextShuffledIndex = (currentShuffledIndex + 1) % shuffledIndices.length;
+    currentIndex = shuffledIndices[nextShuffledIndex];
+  } else {
+    currentIndex = (currentIndex + 1) % playlist.length;
+  }
+  
+  playCurrentTrack();
+}
+
+function playPreviousTrack() {
+  if (playlist.length === 0) return;
+  
+  if (isShuffleMode) {
+    if (shuffledIndices.length === 0) {
+      generateShuffledIndices();
+    }
+    
+    const currentShuffledIndex = shuffledIndices.findIndex(index => index === currentIndex);
+    const prevShuffledIndex = (currentShuffledIndex - 1 + shuffledIndices.length) % shuffledIndices.length;
+    currentIndex = shuffledIndices[prevShuffledIndex];
+  } else {
+    currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+  }
+  
+  playCurrentTrack();
+}
+
+// Handle track end for repeat mode
+audio.addEventListener('ended', () => {
+  if (isRepeatMode) {
+    // Repeat current track
+    audio.currentTime = 0;
+    audio.play();
+  } else {
+    // Play next track
+    playNextTrack();
+  }
+});
