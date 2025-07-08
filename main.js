@@ -47,7 +47,7 @@ ipcMain.handle('save-mp3', (event, filePath) => {
 ipcMain.handle('select-file', async () => {
   const result = await dialog.showOpenDialog({
     properties: ['openFile'],
-    filters: [{ name: 'Audio', extensions: ['mp3'] }],
+    filters: [{ name: 'Audio', extensions: ['mp3', 'flac', 'ogg', 'wav'] }],
   });
   if (result.canceled || result.filePaths.length === 0) return null;
   return result.filePaths[0];
