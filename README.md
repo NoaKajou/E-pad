@@ -331,8 +331,4 @@ If you encounter problems or have questions:
 - Open an issue on GitHub
 - Check the troubleshooting section above
 
-<<<<<<< Updated upstream
 ---
-=======
----
->>>>>>> Stashed changes
