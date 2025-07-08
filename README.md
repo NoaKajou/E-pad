@@ -331,6 +331,8 @@ If you encounter problems or have questions:
 - Open an issue on GitHub
 - Check the troubleshooting section above
 
+<<<<<<< Updated upstream
 ---
-
-Developed with ❤️ and nostalgia for the classic iPod era.
+=======
+---
+>>>>>>> Stashed changes
