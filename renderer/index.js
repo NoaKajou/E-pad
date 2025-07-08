@@ -122,3 +122,18 @@ function formatTime(sec) {
   const seconds = Math.floor(sec % 60) || 0;
   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
+
+function updateTitle(text) {
+  const titleEl = document.getElementById("song-title");
+  titleEl.textContent = text;
+
+  const parentWidth = titleEl.parentElement.offsetWidth;
+  const scrollWidth = titleEl.scrollWidth;
+
+  // Activer ou désactiver l’animation selon la longueur
+  if (scrollWidth > parentWidth) {
+    titleEl.style.animation = "scroll-text 10s linear infinite";
+  } else {
+    titleEl.style.animation = "none";
+  }
+}

@@ -317,6 +317,7 @@ Contributions are welcome! To contribute:
 ## 🔮 Future Features
 
 - [x] Support for additional audio formats (WAV, FLAC, OGG)
+- [x] Implement marquee-style scrolling for track titles
 - [ ] Integrated audio visualizer
 - [ ] Graphic equalizer
 - [ ] Shuffle and repeat modes
