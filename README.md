@@ -316,7 +316,7 @@ Contributions are welcome! To contribute:
 - [x] Support for additional audio formats (WAV, FLAC, OGG)
 - [x] Implement marquee-style scrolling for track titles
 - [x] Shuffle and repeat modes
-- [ ] Track metadata (artist, album, artwork)
+- [x] Track metadata (artist, album, artwork)
 - [ ] Global keyboard shortcuts
 - [x] Customizable themes
 - [ ] Full-screen mode
