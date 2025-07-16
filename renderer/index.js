@@ -5,6 +5,12 @@ document.body.appendChild(playlistContainer);
 const audio = document.getElementById('audio');
 const titleElem = document.getElementById('song-title');
 const artistElem = document.getElementById('song-artist');
+
+// 🐛 DEBUG: Check if elements are found
+console.log('🎵 DEBUG: Title element found:', titleElem);
+console.log('🎵 DEBUG: Artist element found:', artistElem);
+console.log('🎵 DEBUG: Artist element initial content:', artistElem ? artistElem.textContent : 'ELEMENT NOT FOUND');
+
 const playPauseBtn = document.getElementById('playPauseBtn');
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
@@ -105,16 +111,49 @@ window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('selectedTheme') || 'classic';
   document.documentElement.setAttribute('data-theme', savedTheme);
   themeSelect.value = savedTheme;
+  
+  // 🐛 DEBUG: Test artist visibility
+  if (artistElem) {
+    artistElem.textContent = 'TEST ARTIST - VISIBLE?';
+    console.log('🎵 DEBUG: Set test artist text');
+    setTimeout(() => {
+      console.log('🎵 DEBUG: Artist element after 1 second:', artistElem.textContent);
+      console.log('🎵 DEBUG: Artist element computed style:', window.getComputedStyle(artistElem));
+    }, 1000);
+  }
 });
 
 // ▶️ Jouer un morceau de la playlist
-function playCurrentTrack() {
+async function playCurrentTrack() {
   const filePath = playlist[currentIndex];
   if (!filePath) return;
 
+  console.log('🎵 DEBUG: Playing track:', filePath);
+  
+  // Set audio source
   audio.src = filePath;
-  titleElem.textContent = filePath.split(/(\\|\/)/g).pop();
-  artistElem.textContent = 'Inconnu';
+  
+  // Get metadata for the file
+  try {
+    console.log('🎵 DEBUG: Getting metadata for:', filePath);
+    const metadata = await window.electronAPI.getMetadata(filePath);
+    console.log('🎵 DEBUG: Received metadata:', metadata);
+    
+    // Update UI with metadata
+    titleElem.textContent = metadata.title || filePath.split(/(\\|\/)/g).pop();
+    artistElem.textContent = metadata.artist || 'Artiste Inconnu';
+    
+    console.log('🎵 DEBUG: Set title to:', titleElem.textContent);
+    console.log('🎵 DEBUG: Set artist to:', artistElem.textContent);
+    
+  } catch (error) {
+    console.error('🎵 ERROR: Failed to get metadata:', error);
+    // Fallback to filename
+    const fileName = filePath.split(/(\\|\/)/g).pop();
+    titleElem.textContent = fileName;
+    artistElem.textContent = 'Artiste Inconnu';
+  }
+  
   audio.load();
   audio.play();
 }

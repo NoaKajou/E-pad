@@ -58,6 +58,36 @@
   --button-import-bg: #8b6914;
 }
 
+/* ===== TITLE BAR (CLOSE BUTTON) ===== */
+#title-bar {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  background: transparent;
+}
+
+#title-bar .btn {
+  background: rgba(255, 0, 0, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#title-bar .btn:hover {
+  background: rgba(255, 0, 0, 1);
+  transform: scale(1.1);
+}
+
 body {
   background: var(--bg-color);
   display: flex;
@@ -101,6 +131,17 @@ body {
   font-size: 0.9rem;
   margin: 5px 0;
   color: var(--screen-text-secondary);
+}
+
+/* Make artist name more visible */
+#song-artist {
+  font-size: 1rem !important;
+  color: var(--screen-text) !important;
+  font-weight: bold;
+  text-align: center;
+  margin: 8px 0 !important;
+  text-shadow: 0 0 3px currentColor;
+  min-height: 1.2em;
 }
 
 .time {
