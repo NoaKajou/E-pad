@@ -5,23 +5,14 @@ on:
     branches: [main]
 
 jobs:
-  build-and-release:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-
+  build-linux:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '18'
-
-      - name: Install dependencies
-        run: npm ci
-
+      - run: npm ci
       - name: Get version from package.json
         id: get_version
         uses: actions/github-script@v7
@@ -30,24 +21,84 @@ jobs:
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
             core.exportVariable('VERSION', pkg.version);
+      - run: npm run build -- --linux --publish never
+      - name: Upload Linux artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-artifacts
+          path: |
+            dist/*.AppImage
+            dist/*.blockmap
+            dist/*.zip
 
-      - name: Build app (native)
-        run: |
-          if [[ "$RUNNER_OS" == "Linux" ]]; then
-            npm run build -- --linux --publish never
-          elif [[ "$RUNNER_OS" == "Windows" ]]; then
-            npm run build -- --win --publish never
-          elif [[ "$RUNNER_OS" == "macOS" ]]; then
-            npm run build -- --mac --publish never
-          fi
-        shell: bash
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci
+      - name: Get version from package.json
+        id: get_version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            core.exportVariable('VERSION', pkg.version);
+      - run: npm run build -- --win --publish never
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-artifacts
+          path: |
+            dist/*.exe
+            dist/*.blockmap
+            dist/*.zip
 
-      - name: Find release artifacts
-        id: artifacts
-        run: |
-          echo "files=$(find dist -type f \( -iname '*.AppImage' -o -iname '*.exe' -o -iname '*.blockmap' -o -iname '*.zip' \) | tr '\n' ' ')" >> $GITHUB_OUTPUT
-        shell: bash
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - run: npm ci
+      - name: Get version from package.json
+        id: get_version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            core.exportVariable('VERSION', pkg.version);
+      - run: npm run build -- --mac --publish never
+      - name: Upload MacOS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-artifacts
+          path: |
+            dist/*.zip
+            dist/*.blockmap
 
+  release:
+    runs-on: ubuntu-latest
+    needs: [build-linux, build-windows, build-macos]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: all-artifacts
+      - name: List all artifacts
+        run: ls -R all-artifacts
+      - name: Get version from package.json
+        id: get_version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            core.exportVariable('VERSION', pkg.version);
       - name: Create or update GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -55,7 +106,11 @@ jobs:
           name: Release v${{ env.VERSION }}
           body: |
             Automatic release for version ${{ env.VERSION }}
-          files: ${{ steps.artifacts.outputs.files }}
+          files: |
+            all-artifacts/**/*.AppImage
+            all-artifacts/**/*.exe
+            all-artifacts/**/*.zip
+            all-artifacts/**/*.blockmap
           draft: false
           prerelease: false
         env:
