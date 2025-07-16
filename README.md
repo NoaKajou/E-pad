@@ -319,7 +319,7 @@ Contributions are welcome! To contribute:
 - [x] Track metadata (artist, album, artwork)
 - [ ] Global keyboard shortcuts
 - [x] Customizable themes
-- [ ] Full-screen mode
+- [x] Full-screen mode
 
 ## 📞 Support
 
