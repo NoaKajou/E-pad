@@ -60,6 +60,9 @@ E-pad is a modern MP3 player with a nostalgic design inspired by the classic iPo
 - 🍎 **macOS**: Download the `.zip` file (Intel & Apple Silicon supported)
 - 🐧 **Linux**: Download the `.AppImage` file
 
+> All files are available in the [latest release](https://github.com/NoaKajou/E-pad/releases/latest)  
+> You will also find `.blockmap` files for auto-update support.
+
 </div>
 
 ---
@@ -99,8 +102,7 @@ This project uses the following key dependencies:
 
 ### 🔧 Building the Application
 
-To create an executable for your current operating system:
-
+To build for your current OS:
 ```bash
 npm run build
 ```
@@ -109,18 +111,13 @@ The executable will be generated in the `dist/` folder.
 
 #### 🌍 Cross-Platform Building
 
-**Building from Linux** (your current system):
-```bash
-# Build for Linux (native) ✅
-npx electron-builder --linux
+**Recommended:** Use GitHub Actions (automatic builds for Windows, macOS, and Linux)
 
-# Build for Windows (requires Wine) ⚠️
-sudo apt-get install wine
-npx electron-builder --win
+Every push to `main` triggers a workflow that:
+- Builds the app for Windows (`.exe`), macOS (`.zip`), and Linux (`.AppImage`)
+- Uploads all distributable files (`.exe`, `.zip`, `.AppImage`, `.blockmap`) to the [latest release](https://github.com/NoaKajou/E-pad/releases/latest)
 
-# Build for macOS (limited support) ⚠️
-npx electron-builder --mac  # Creates .zip files, not .dmg
-```
+You can always download the latest version for your OS from the release page.
 
 **Build Results:**
 - **Linux**: `MP3 Retro Player-1.0.0.AppImage` 
@@ -331,3 +328,11 @@ If you encounter problems or have questions:
 - Check the troubleshooting section above
 
 ---
+
+## 🤖 Automated Release
+
+This project uses GitHub Actions to automatically:
+- Build the app for Windows, macOS, and Linux on every push to `main`
+- Upload all distributable files to the latest GitHub release
+
+You will always find the latest `.exe`, `.zip`, `.AppImage`, and `.blockmap` files in the [Releases](https://github.com/NoaKajou/E-pad/releases) section.
