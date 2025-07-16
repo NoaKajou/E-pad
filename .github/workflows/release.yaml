@@ -3,12 +3,6 @@ name: Build & Release
 on:
   push:
     branches: [main]
-    paths:
-      - 'package.json'
-      - 'renderer/**'
-      - 'main.js'
-      - 'preload.js'
-      - '.github/workflows/release.yml'
 
 jobs:
   build-and-release:
