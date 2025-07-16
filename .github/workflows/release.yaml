@@ -42,12 +42,10 @@ jobs:
           fi
         shell: bash
 
-      - name: Find build artifacts
+      - name: Find release artifacts
         id: artifacts
         run: |
-          echo "files<<EOF" >> $GITHUB_OUTPUT
-          find dist -type f >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "files=$(find dist -type f \( -iname '*.AppImage' -o -iname '*.exe' -o -iname '*.blockmap' -o -iname '*.zip' \) | tr '\n' ' ')" >> $GITHUB_OUTPUT
 
       - name: Create or update GitHub Release
         uses: softprops/action-gh-release@v2
