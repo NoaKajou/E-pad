@@ -22,6 +22,7 @@
       "output": "dist"
     },
     "win": {
+      "icon": false,
       "target": [
         {
           "target": "portable",
@@ -32,6 +33,7 @@
       ]
     },
     "mac": {
+      "icon": false,
       "target": [
         {
           "target": "zip",
@@ -43,6 +45,7 @@
       ]
     },
     "linux": {
+      "icon": false,
       "target": [
         {
           "target": "AppImage",
