@@ -14,7 +14,8 @@
     "appId": "com.elias.mp3player",
     "productName": "MP3-Retro-Player",
     "files": [
-      "**/*"
+      "**/*",
+      "!icon.png"
     ],
     "directories": {
       "buildResources": "assets",
